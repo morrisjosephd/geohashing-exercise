@@ -4,14 +4,19 @@ var app = express();
 var geoHash = require('./lib/geohash');
 
 app.get('/geohash', function (req, res) {
+  var lat = req.query.lat;
+  var lon = req.query.lon;
+
+  console.log(lat, lon);
 
   var respond = function (data) {
-    res.json(data);
+    res.status(200).type('json').json(data);
   };
 
-  geoHash(req.query.lat, req.query.lon, respond);
+  geoHash(lat, lon, respond);
 
 });
+
 
 console.log("api listening on 8000");
 
