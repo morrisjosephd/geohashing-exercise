@@ -17,6 +17,20 @@ app.get('/geohash', function (req, res) {
 
 });
 
+app.post('/geohash', function (req, res) {
+  var lat = req.params.lat;
+  var lon = req.params.lon;
+
+  console.log(lat, lon);
+
+  var respond = function (data) {
+    res.status(200).type('json').json(data);
+  };
+
+  geoHash(lat, lon, respond);
+
+});
+
 
 console.log("api listening on 8000");
 
